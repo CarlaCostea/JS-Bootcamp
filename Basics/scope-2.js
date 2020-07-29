@@ -9,7 +9,7 @@ if (true) {
     //variable shadowing
     let name = 'Cristina'
     if (true) {
-        nameLeaked = 'Jen' //if is not defined it becomes global
+        nameLeaked = 'Jen' //if is not defined it becomes global - leaked global
         console.log(name)
     }
 }
