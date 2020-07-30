@@ -2,7 +2,7 @@
 
 //const notes = ['Note 1', 'Note 2', 'Note 3']
 
-const notes = [{}, {
+const notes = [ {
     title: 'Note 1',
     body: 'I would like a pizza'
 }, {
@@ -11,6 +11,9 @@ const notes = [{}, {
 }, {
     title: 'Note 3',
     body: 'Sleep more'
+}, {
+    title: 'Note 11',
+    body: 'Read a book'
 }]
 
 // notes.pop() // removes item from end and returns the item
@@ -60,6 +63,16 @@ const findNote = function (notes, noteTitle) {
             return note.title === noteTitle
         })
 }
+
+const findNotes = function (notes, query) {
+    return notes.filter(function (note) {
+        const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase())
+        const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase())
+        return isTitleMatch || isBodyMatch
+    })
+}
+
+console.log(findNotes(notes, '1'))
 
 
 const note = findNote(notes, 'Note 3')

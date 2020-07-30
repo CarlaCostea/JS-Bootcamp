@@ -42,7 +42,14 @@ const deleteTodo = function(todos, todoToDelete) {
     }
 }
 
-deleteTodo(todos, 'drink coffee')
+const getThingsToDo = function(todos, completed) {
+    return todos.filter( function(todo) {
+        return todo.completed === completed
+    })
+}
+
+console.log(getThingsToDo(todos, false))
+// deleteTodo(todos, 'drink coffee')
 console.log(todos)
 
 // todos.splice(2, 1)
