@@ -1,6 +1,17 @@
 // DMDN Arrays
 
-const notes = ['Note 1', 'Note 2', 'Note 3']
+//const notes = ['Note 1', 'Note 2', 'Note 3']
+
+const notes = [{}, {
+    title: 'Note 1',
+    body: 'I would like a pizza'
+}, {
+    title: 'Note 2',
+    body: 'Exercise. Eat better'
+}, {
+    title: 'Note 3',
+    body: 'Sleep more'
+}]
 
 // notes.pop() // removes item from end and returns the item
 // notes.push('Note 4') // add item to the end
@@ -15,18 +26,48 @@ const notes = ['Note 1', 'Note 2', 'Note 3']
 
 
 // callback function, a function passed in a function
-notes.forEach(function (item) {
-    console.log(item)
-})
+// notes.forEach(function (item) {
+//     console.log(item)
+// })
 
-for (let count = 0; count < notes.length; count++) {
-    console.log(notes[count])
+// for (let count = 0; count < notes.length; count++) {
+//     console.log(notes[count])
+// }
+
+// for (let count = notes.length - 1; count >= 0; count--) {
+//     console.log(notes[count])
+// }
+
+// console.log(notes.length)
+// console.log(notes[0])
+
+// console.log(notes.indexOf('Note 2'))
+
+// let someObject = {}
+// let otherObject = someObject // only in this case two object are equal someObject === otherObject
+
+// console.log(notes.indexOf({})) // -1
+
+// const findNote = function (notes, noteTitle) {
+//     const index = notes.findIndex(function (note) {
+//             return note.title === noteTitle
+//         })
+//         return notes[index]
+// }
+
+const findNote = function (notes, noteTitle) {
+    return notes.find(function (note) { // find returns the item or undefined
+            return note.title === noteTitle
+        })
 }
 
-for (let count = notes.length - 1; count >= 0; count--) {
-    console.log(notes[count])
-}
 
-console.log(notes.length)
-console.log(notes[0])
+const note = findNote(notes, 'Note 3')
+console.log(note)
 
+
+// const index = notes.findIndex(function (note, index) {
+//     return note.title === 'Note 2'
+// })
+
+// console.log(index)
