@@ -57,3 +57,18 @@ console.log(todos)
 // todos.shift()
 
 // console.log(todos)
+
+//with an array of objects sort does not know what to do unless we tell it
+const sortToDos = function (todos) {
+    todos.sort( function(a) {
+        if (a.completed){
+            return 1
+        } else {
+            return -1
+        }
+    })
+}
+
+console.log(false < true)
+sortToDos(todos)
+console.log(todos)
