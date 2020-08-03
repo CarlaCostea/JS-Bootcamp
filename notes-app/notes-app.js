@@ -61,10 +61,8 @@ document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'The button was clicked'
 })
 
-// to acces the second button we have to acces all buttons
-
 document.querySelector('#remove-all').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function (note) {
+    document.querySelectorAll('#notes').forEach(function (note) {
         note.remove()
     })
 })
@@ -74,10 +72,14 @@ document.querySelector("#search-text").addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#name-form').addEventListener('submit', function (e) {
-    //prevent the default behavior
-    e.preventDefault()
-    //acces all the elements we set up
-    console.log(e.target.elements.firstName.value)
-    e.target.elements.firstName.value = ''
+// document.querySelector('#name-form').addEventListener('submit', function (e) {
+//     //prevent the default behavior
+//     e.preventDefault()
+//     //acces all the elements we set up
+//     console.log(e.target.elements.firstName.value)
+//     e.target.elements.firstName.value = ''
+// })
+
+document.querySelector('#filter-by').addEventListener('change', function (e) {
+    console.log(e.target.value)
 })

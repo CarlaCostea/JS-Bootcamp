@@ -16,13 +16,25 @@ const todos = [{
 }]
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    hideCompleted: false
 }
 
 const renderTodos = function (todos, filters) {
-    const filteredTodos = todos.filter(function (todo) {
-        return todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
+    let filteredTodos = todos.filter(function (todo) {
+        const textMatch = todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
+        hideMatch = !filters.hideCompleted || !todo.completed
+        return textMatch && hideMatch
     })
+
+    // filteredTodos = filteredTodos.filter(function (todo) {
+    //     return !filters.hideCompleted || !todo.completed
+    //     // if (filters.hideCompleted) {
+    //     //     return !todo.completed
+    //     // } else {
+    //     //     return true
+    //     // }
+    // })
 
     const incompleteTodos = filteredTodos.filter(function (todo) {
         return !todo.completed
@@ -43,27 +55,9 @@ const renderTodos = function (todos, filters) {
 
 renderTodos(todos, filters)
 
-//Listen for new todo creation
-// document.querySelector('#add-todo').addEventListener('click', function () {
-//     console.log('add')
-// })
-// const ps = document.querySelectorAll('p')
-
-// ps.forEach( function(p) {
-//     if (p.textContent.includes('coffee'))
-//     {
-//         p.remove()
-//     }
-// })
-
-// Listen for input new-todo
-// document.querySelector('#new-todo').addEventListener('input', function(e) {
-//     console.log(e.target.value)
-// })
-
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
-    renderTodos(todos, filters)
+    renderTodos(todos, filters)``
 })
 
 document.querySelector('#new-todo').addEventListener('submit', function (e) {
@@ -74,4 +68,9 @@ document.querySelector('#new-todo').addEventListener('submit', function (e) {
     })
     renderTodos(todos, filters)
     e.target.elements.text.value =''
+})
+
+document.querySelector("#check-todos").addEventListener('change', function(e) {
+    filters.hideCompleted = e.target.checked
+    renderTodos(todos, filters)
 })
