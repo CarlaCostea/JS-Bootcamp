@@ -1,6 +1,5 @@
 // Read existing notes from localStorage
 const getSavedNotes = function () {
-    // Check for existing saved data
     const notesJSON = localStorage.getItem('notes')
 
     if (notesJSON !== null) {
