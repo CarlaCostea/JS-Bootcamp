@@ -29,8 +29,8 @@ const generateToDoDOM = function (todo) {
     todoText.textContent = todo.title
     todoEl.appendChild(todoText)
 
-    // Setup the todo text
-    todoButton.textContent = 'x'
+    // Setup the remove button
+    todoRemoveButton.textContent = 'x'
     todoEl.appendChild(todoRemoveButton)
     return todoEl
 }
