@@ -32,7 +32,23 @@ const generateToDoDOM = function (todo) {
     // Setup the remove button
     todoRemoveButton.textContent = 'x'
     todoEl.appendChild(todoRemoveButton)
+    todoRemoveButton.addEventListener('click', function() {
+        removeToDo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
     return todoEl
+}
+
+// Remove todo by id
+const removeToDo = function (id) {
+    const todoIndex = todos.findIndex( function (todo) {
+        return todo.id == id
+    })
+
+    if (todoIndex !== -1) {
+        todos.splice(todoIndex, 1)
+    }
 }
 
 // Get the DOM elements for remaining todos

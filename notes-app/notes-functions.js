@@ -20,9 +20,17 @@ const generateNoteDOM = function (note) {
     const textEl = document.createElement('span')
     const button = document.createElement('button')
 
+    debugger
     // Setup the remove note button
     button.textContent = 'x'
     noteEl.appendChild(button)
+    button.addEventListener('click', function() {
+        removeNote(note.id)
+        saveNotes(notes)
+        renderNotes(notes, filters)
+    })
+
+    debugger
 
     if (note.title.length > 0) {
         textEl.textContent = note.title
@@ -32,6 +40,17 @@ const generateNoteDOM = function (note) {
 
     noteEl.appendChild(textEl)
     return noteEl
+}
+
+// Renove note by id
+const removeNote = function (id) {
+    const noteIndex = notes.findIndex(function (note) {
+        return note.id == id
+    })
+
+    if (noteIndex !== -1) {
+        notes.splice(noteIndex, 1)
+    } 
 }
 
 // Render application notes
