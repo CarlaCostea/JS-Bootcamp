@@ -23,7 +23,14 @@ const generateToDoDOM = function (todo) {
     
     // Setup todo checkbox
     todoCheckBox.setAttribute('type', 'checkbox')
+    todoCheckBox.checked = todo.completed
     todoEl.appendChild(todoCheckBox)
+    todoCheckBox.addEventListener('change', function(){
+        checkToDo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
+  
 
     // Setup todo text
     todoText.textContent = todo.title
@@ -40,11 +47,26 @@ const generateToDoDOM = function (todo) {
     return todoEl
 }
 
-// Remove todo by id
-const removeToDo = function (id) {
-    const todoIndex = todos.findIndex( function (todo) {
+const getIndex = function (id) {
+    todos.findIndex( function (todo) {
         return todo.id == id
     })
+}
+
+const checkToDo = function (id) {
+    const todo = todos.find(function (todo) {
+        return todo.id === id
+    })
+
+    if (todo !== undefined)
+    {
+        todo.completed = !todo.completed;
+    } 
+} 
+
+// Remove todo by id
+const removeToDo = function (id) {
+    const todoIndex = getIndex(id)
 
     if (todoIndex !== -1) {
         todos.splice(todoIndex, 1)
