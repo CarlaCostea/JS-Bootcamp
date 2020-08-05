@@ -20,17 +20,17 @@ const generateToDoDOM = function (todo) {
     const todoCheckBox = document.createElement('input')
     const todoText = document.createElement('span')
     const todoRemoveButton = document.createElement('button')
-    
+
     // Setup todo checkbox
     todoCheckBox.setAttribute('type', 'checkbox')
     todoCheckBox.checked = todo.completed
     todoEl.appendChild(todoCheckBox)
-    todoCheckBox.addEventListener('change', function(){
+    todoCheckBox.addEventListener('change', function () {
         checkToDo(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
     })
-  
+
 
     // Setup todo text
     todoText.textContent = todo.title
@@ -39,7 +39,7 @@ const generateToDoDOM = function (todo) {
     // Setup the remove button
     todoRemoveButton.textContent = 'x'
     todoEl.appendChild(todoRemoveButton)
-    todoRemoveButton.addEventListener('click', function() {
+    todoRemoveButton.addEventListener('click', function () {
         removeToDo(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
@@ -48,7 +48,7 @@ const generateToDoDOM = function (todo) {
 }
 
 const getIndex = function (id) {
-    todos.findIndex( function (todo) {
+    todos.findIndex(function (todo) {
         return todo.id == id
     })
 }
@@ -58,11 +58,10 @@ const checkToDo = function (id) {
         return todo.id === id
     })
 
-    if (todo !== undefined)
-    {
+    if (todo !== undefined) {
         todo.completed = !todo.completed;
-    } 
-} 
+    }
+}
 
 // Remove todo by id
 const removeToDo = function (id) {
@@ -105,7 +104,7 @@ const renderTodos = function (todos, filters) {
     document.querySelector('#todos').innerHTML = ''
 
     document.querySelector('#todos').appendChild(generateRemainingDOM(incompleteTodos))
-    
+
     filteredTodos.forEach(function (todo) {
         const p = generateToDoDOM(todo)
         document.querySelector('#todos').appendChild(p)

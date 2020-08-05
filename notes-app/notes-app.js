@@ -7,13 +7,17 @@ const filters = {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
+    const id = uuidv4()
+    console.log(id)
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         body: ''
     })
     saveNotes(notes)
-    renderNotes(notes, filters)
+    // if we add location.assign we don't need to renderNotes here
+    // renderNotes(notes, filters)
+    location.assign(`/edit.html#${id}`)
 })
 
 document.querySelector('#remove-all').addEventListener('click', function () {
