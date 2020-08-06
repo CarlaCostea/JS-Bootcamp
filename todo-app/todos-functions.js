@@ -2,7 +2,9 @@
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
 
-    return todosJSON !== null ? JSON.parse(todosJSON) : []
+    return todosJSON ? JSON.parse(todosJSON) : []
+
+    // return todosJSON !== null ? JSON.parse(todosJSON) : []
     // if (todosJSON !== null) {
     //     return JSON.parse(todosJSON)
     // } else {
@@ -55,7 +57,7 @@ const getIndex = (id) => {
 const checkToDo = (id) => {
     const todo = todos.find((todo) => todo.id === id)
 
-    if (todo !== undefined) {
+    if (todo) {
         todo.completed = !todo.completed;
     }
 }
