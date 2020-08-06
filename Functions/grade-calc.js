@@ -3,24 +3,32 @@
 // A 90-100, B 80-89, C 70-79, D60 69, F 0-59
 
 const grade = function (score, maxScore) {
-    let result;
-    const percentage = score / maxScore * 100;
-    
-    if (percentage < 60) {
-        result = 'F'
-    } else if (percentage < 70) {
-        result = 'D'
-    } else if (percentage < 80) {
-        result = 'C'
-    } else if (percentage < 90) {
-        result = 'B'
+    if (isNaN(score) || isNaN(maxScore)) {
+        throw Error ('The grades must be numeric values')
     } else {
-        result = 'A'
+        let result;
+        const percentage = score / maxScore * 100;
+
+        if (percentage < 60) {
+            result = 'F'
+        } else if (percentage < 70) {
+            result = 'D'
+        } else if (percentage < 80) {
+            result = 'C'
+        } else if (percentage < 90) {
+            result = 'B'
+        } else {
+            result = 'A'
+        }
+        return `You got a ${result} (${percentage}% ) !`
     }
-    
-    return `You got a ${result} (${percentage}% ) !`
 }
 
-const gradeCalc = grade(15, 20);
-console.log(gradeCalc); 
+try {
+    const gradeCalc = grade(15, 'bgf');
+    console.log(gradeCalc);
+} catch (e) {
+    console.log(e.message)
+}
+
 

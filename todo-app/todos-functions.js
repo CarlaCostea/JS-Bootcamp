@@ -1,8 +1,14 @@
+'use strict'
+
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
 
-    return todosJSON ? JSON.parse(todosJSON) : []
+    try {
+        return todosJSON ? JSON.parse(todosJSON) : []
+    } catch (e) {
+        return []
+    }
 
     // return todosJSON !== null ? JSON.parse(todosJSON) : []
     // if (todosJSON !== null) {
@@ -82,7 +88,7 @@ const generateRemainingDOM = (incompleteTodos) => {
 const renderTodos = (todos, filters) => {
     let filteredTodos = todos.filter((todo) => {
         const textMatch = todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
-        hideMatch = !filters.hideCompleted || !todo.completed
+        const hideMatch = !filters.hideCompleted || !todo.completed
         // debugger
         return textMatch && hideMatch
     })
