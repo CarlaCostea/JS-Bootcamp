@@ -49,3 +49,26 @@ window.addEventListener('storage', function (e) {
         renderNotes(notes, filters)
     }
 })
+
+// Unix Epoch - January 1st 1970 00:00:00 represemts 0 /1s === 1000
+
+// const now = new Date()
+// const timestamp = now.getTime()
+
+// const myDate = new Date(timestamp)
+// console.log(myDate.getFullYear())
+
+// const now = moment()
+// now.subtract(1, 'week').subtract(20, 'days')
+// //momentjs.com/docs...format
+// console.log(now.format('MMMM Do, YYYY'))
+// console.log(now.fromNow())
+
+// const nowTimestamp = now.valueOf()
+// console.log(nowTimestamp)
+// console.log(moment(nowTimestamp).toString())
+
+const myBDay = moment()
+// myBDay.set({'year': 1989, 'month': 10, 'date': 18})
+myBDay.year(1989).month(10).date(18)
+console.log(myBDay.format('MMM D, YYYY'))
