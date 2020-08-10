@@ -43,6 +43,8 @@ Hangman.prototype.getMessage = function () {
     if (this.status === 'failed') {
         return `Nice try! The word was "${this.word.join('')}".`
     }
+
+    return 'Great work! You guessed the word'
 }
 
 Hangman.prototype.getStatus = function (currentGame) {
