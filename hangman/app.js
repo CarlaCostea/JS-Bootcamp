@@ -1,33 +1,25 @@
-// Primitive value : string, number, boolean, null, undefined
+let statusEl = document.querySelector('#status')
+const puzzleEl = document.querySelector('#puzzle')
+const guessesEl = document.querySelector('#guesses')
+const game1 = new Hangman('wife', 3)
+// game1.makeGuess('w')
+// game1.makeGuess('t')
+// game1.makeGuess('z')
 
-// Object: myObject (product) --> Object.prototype --> null
-const product = {
-    name: 'Influence'
-}
+statusEl.textContent = game1.status
+puzzleEl.textContent = game1.getPuzzle()
+guessesEl.textContent = game1.getMessage()
 
-// hasOwnProperty
-console.log(product.hasOwnProperty('hasOwnProperty'))
-console.log(product)
+// const game2 = new Hangman('complicated', 5)
+// game2.makeGuess('c')
+// console.log(game2.getPuzzle())
+// console.log(game2.remainingGuesses)
 
-Object.prototype.someNewMethod = () => 'This is the new function'
-console.log(product.someNewMethod())
-
-// Array: myArray --> Array.prototype --> Object.prototype --> null
-
-const team = ['Luke', 'Mad']
-console.log(team.hasOwnProperty('length')) //true
-console.log(team.hasOwnProperty('filter')) //false - filter comes from array.prototype
-
-// Function myFunc --> Function.prototype --> Object.prototype --> null
-const getScore = () => 1
-console.log(getScore)
-
-// string, number and boolean have an object wraper - when we try to acces a property, the string is converted to an object
-const product = 'computer'
-
-// String: myString --> String.prototype --> Object.prototype --> null
-const otherProduct = new String('mac')
-console.log(otherProduct)
-
-// Number: myNumber --> Number.prototype --> Object.prototype --> null
-// Boolean: myBoolean --> Boolean.prototype --> Object.prototype --> null
+window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGuess(guess)
+    game1.getStatus(game1)
+    statusEl.textContent = game1.status
+    puzzleEl.textContent = game1.getPuzzle()
+    guessesEl.textContent = game1.getMessage()
+})
