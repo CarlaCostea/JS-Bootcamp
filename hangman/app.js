@@ -36,6 +36,11 @@ getPuzzle((error, puzzle) => {
     console.log(puzzle)
 })
 
+
+// // we usualy do not use this
+// const puzzle = getPuzzleSync()
+// console.log(puzzle)
+
 // Challenge
 
     // Making an HTTP request
