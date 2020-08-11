@@ -36,6 +36,15 @@ getPuzzle((error, puzzle) => {
     console.log(puzzle)
 })
 
+getCountry('RO',(error, country) => {
+    if (error) {
+        console.log(error)
+        return
+    }
+    
+    console.log(country.name)
+})
+
 
 // // we usualy do not use this
 // const puzzle = getPuzzleSync()
