@@ -1,3 +1,7 @@
+// HTTP (Hypertext Transfer Protocol)
+// Request - What do we want to do (generate a new word or frase for our game)
+// Response - What was actually done (contain word or frase)
+
 let statusEl = document.querySelector('#status')
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
@@ -15,7 +19,7 @@ guessesEl.textContent = game1.message
 // console.log(game2.getPuzzle())
 // console.log(game2.remainingGuesses)
 
-window.addEventListener('keypress', function (e) {
+window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
     game1.makeGuess(guess)
     game1.getStatus(game1)
@@ -23,3 +27,16 @@ window.addEventListener('keypress', function (e) {
     puzzleEl.textContent = game1.puzzle
     guessesEl.textContent = game1.message
 })
+
+// Making an HTTP request
+const request = new XMLHttpRequest()
+
+request.addEventListener('readystatechange', (e) => {
+    if (e.target.readyState === 4) {
+        const data = JSON.parse(e.target.responseText)
+        console.log(data)
+    }
+})
+
+request.open('GET', 'http://puzzle.mead.io/puzzle')
+request.send()
