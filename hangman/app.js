@@ -35,6 +35,13 @@ getPuzzle('2').then((puzzle) => {
     console.log(`Error: ${err}`)
 })
 
+// used with fetch request
+getCountry('RO').then((country) => {
+    console.log(country.name)
+}).catch((err) => {
+    console.log(`Error: ${err}`)
+})
+
 // // used with fetch request
 // getPuzzle('2').then((data) => {
 //     console.log(data.puzzle)
@@ -49,11 +56,12 @@ getPuzzle('2').then((puzzle) => {
 //     console.log(`Error: ${err}`)
 // })
 
-getCountry('RO').then((country) => {
-    console.log(country.name)
-}, (err) => {
-    console.log(`Error: ${err}`)
-})
+// // used with promise request
+// getCountry('RO').then((country) => {
+//     console.log(country.name)
+// }, (err) => {
+//     console.log(`Error: ${err}`)
+// })
 
 // getCountry('RO',(error, country) => {
 //     if (error) {
