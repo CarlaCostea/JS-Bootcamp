@@ -1,5 +1,15 @@
+// async/await
+const getPuzzle = async (wordCount) => {
+    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    if (response.status !== 200) {
+        throw new Error('An error occurred')
+    }
+    const data = await response.json()
+    return data.puzzle
+}
+
 // convert to fetch
-const getPuzzle = (wordCount) => {
+const getPuzzleOld = (wordCount) => {
     return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
