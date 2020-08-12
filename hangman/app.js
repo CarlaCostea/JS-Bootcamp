@@ -28,22 +28,26 @@ window.addEventListener('keypress', (e) => {
     guessesEl.textContent = game1.message
 })
 
-getPuzzle((error, puzzle) => {
-    if (error) {
-        console.log(`Error :${error}`)
-        return
-    } 
+getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
+}, (err) => {
+    console.log(`Error: ${err}`)
 })
 
-getCountry('RO',(error, country) => {
-    if (error) {
-        console.log(error)
-        return
-    }
-    
+getCountry('RO').then((country) => {
     console.log(country.name)
+}, (err) => {
+    console.log(`Error: ${err}`)
 })
+
+// getCountry('RO',(error, country) => {
+//     if (error) {
+//         console.log(error)
+//         return
+//     }
+    
+//     console.log(country.name)
+// })
 
 
 // // we usualy do not use this
