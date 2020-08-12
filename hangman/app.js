@@ -28,11 +28,26 @@ window.addEventListener('keypress', (e) => {
     guessesEl.textContent = game1.message
 })
 
+// used with fetch request to return string
 getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
-}, (err) => {
+}).catch((err) => {
     console.log(`Error: ${err}`)
 })
+
+// // used with fetch request
+// getPuzzle('2').then((data) => {
+//     console.log(data.puzzle)
+// }).catch((err) => {
+//     console.log(`Error: ${err}`)
+// })
+
+// // used with promise request
+// getPuzzle('2').then((puzzle) => {
+//     console.log(puzzle)
+// }, (err) => {
+//     console.log(`Error: ${err}`)
+// })
 
 getCountry('RO').then((country) => {
     console.log(country.name)
@@ -76,3 +91,15 @@ getCountry('RO').then((country) => {
 // request.open('GET', 'https://restcountries.eu/rest/v2/all')
 // request.send()
 
+// The Fetch API
+// fetch returns a promise
+// fetch('http://puzzle.mead.io/puzzle', {}). then((response) => {
+//     if (response.status !== 200) {
+//         throw new Error('Unable to fetch the puzzle')
+//     }
+//     return response.json()
+// }).then((data) => {
+//     console.log(data.puzzle)
+// }).catch(() => {
+//     console.log(error)
+// })
