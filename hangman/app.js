@@ -51,6 +51,12 @@ getLocation(token).then((data) => {
     console.log(`Error: ${err}`)
 })
 
+getCurrentCountry().then((country) => {
+    console.log(country.name)
+}).catch((error) => {
+    console.log(error)
+})
+
 // // used with fetch request
 // getPuzzle('2').then((data) => {
 //     console.log(data.puzzle)

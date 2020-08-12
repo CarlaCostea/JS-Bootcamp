@@ -23,7 +23,7 @@ const getPuzzleOld = (wordCount) => {
 }
 
 // Convert to fetch challenge
-const getCountry = (countryCode) => {
+const getCountryOld = (countryCode) => {
     return fetch('https://restcountries.eu/rest/v2/all').then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
@@ -35,7 +35,7 @@ const getCountry = (countryCode) => {
 }
 
 // Get location challenge
-const getLocation = (token) => {
+const getLocationOld = (token) => {
     return fetch(`http://ipinfo.io/json?token=${token}`).then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
@@ -43,6 +43,33 @@ const getLocation = (token) => {
 
         return response.json()
     })
+}
+
+// async await challenge
+const getCountry = async (countryCode) => {
+    const response = await fetch('https://restcountries.eu/rest/v2/all')
+    if (response.status !== 200) {
+        throw new Error('An error occurred')
+    }
+    const data = await response.json()
+    return data.find((country) => country.alpha2Code === countryCode)
+}
+
+// async await challenge
+const getLocation = async (token) => {
+    const response = await fetch(`http://ipinfo.io/json?token=${token}`)
+        if (response.status !== 200) {
+            throw new Error('An error occurred')
+        }
+
+        return response.json()
+}
+
+const getCurrentCountry = async () => {
+    const location = await getLocation(token)
+    // const country = await getCountry(location.country)
+    // return country
+    return getCountry(location.country)
 }
 
 // const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
