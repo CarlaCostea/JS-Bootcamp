@@ -42,6 +42,15 @@ getCountry('RO').then((country) => {
     console.log(`Error: ${err}`)
 })
 
+const token = '062dd84f537e97'
+getLocation(token).then((data) => {
+    return getCountry(data.country)
+}).then((data) => {
+    console.log(data.name)
+}).catch((err) => {
+    console.log(`Error: ${err}`)
+})
+
 // // used with fetch request
 // getPuzzle('2').then((data) => {
 //     console.log(data.puzzle)

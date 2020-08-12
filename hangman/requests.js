@@ -24,6 +24,17 @@ const getCountry = (countryCode) => {
     })
 }
 
+// Get location challenge
+const getLocation = (token) => {
+    return fetch(`http://ipinfo.io/json?token=${token}`).then((response) => {
+        if (response.status !== 200) {
+            throw new Error('An error occurred')
+        }
+
+        return response.json()
+    })
+}
+
 // const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
 //     const request = new XMLHttpRequest()
 
