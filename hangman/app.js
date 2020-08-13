@@ -5,14 +5,14 @@
 let statusEl = document.querySelector('#status')
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
-const game1 = new Hangman('black cat', 4)
+let game
 // game1.makeGuess('w')
 // game1.makeGuess('t')
 // game1.makeGuess('z')
 
-statusEl.textContent = game1.status
-puzzleEl.textContent = game1.puzzle
-guessesEl.textContent = game1.message
+// puzzleEl.textContent = game.puzzle
+// guessesEl.textContent = game.message
+// statusEl.textContent = game.status
 
 // const game2 = new Hangman('complicated', 5)
 // game2.makeGuess('c')
@@ -21,41 +21,55 @@ guessesEl.textContent = game1.message
 
 window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
-    game1.makeGuess(guess)
-    game1.getStatus(game1)
-    statusEl.textContent = game1.status
-    puzzleEl.textContent = game1.puzzle
-    guessesEl.textContent = game1.message
+    game.makeGuess(guess)
+    game.getStatus(game)
+    statusEl.textContent = game.status
+    render()
 })
 
-// used with fetch request to return string
-getPuzzle('2').then((puzzle) => {
-    console.log(puzzle)
-}).catch((err) => {
-    console.log(`Error: ${err}`)
-})
+const render = () => {
+    puzzleEl.textContent = game.puzzle
+    guessesEl.textContent = game.message
+}
 
-// used with fetch request
-getCountry('RO').then((country) => {
-    console.log(country.name)
-}).catch((err) => {
-    console.log(`Error: ${err}`)
-})
+const startGame = async () => {
+    const puzzle = await getPuzzle('2')
+    game = new Hangman(puzzle, 5)
+    render()
+}
 
-const token = '062dd84f537e97'
-getLocation(token).then((data) => {
-    return getCountry(data.country)
-}).then((data) => {
-    console.log(data.name)
-}).catch((err) => {
-    console.log(`Error: ${err}`)
-})
+document.querySelector('#reset').addEventListener('click', startGame)
 
-getCurrentCountry().then((country) => {
-    console.log(country.name)
-}).catch((error) => {
-    console.log(error)
-})
+startGame()
+
+// // used with fetch request to return string
+// getPuzzle('2').then((puzzle) => {
+//     console.log(puzzle)
+// }).catch((err) => {
+//     console.log(`Error: ${err}`)
+// })
+
+// // used with fetch request
+// getCountry('RO').then((country) => {
+//     console.log(country.name)
+// }).catch((err) => {
+//     console.log(`Error: ${err}`)
+// })
+
+// const token = '062dd84f537e97'
+// getLocation(token).then((data) => {
+//     return getCountry(data.country)
+// }).then((data) => {
+//     console.log(data.name)
+// }).catch((err) => {
+//     console.log(`Error: ${err}`)
+// })
+
+// getCurrentCountry().then((country) => {
+//     console.log(country.name)
+// }).catch((error) => {
+//     console.log(error)
+// })
 
 // // used with fetch request
 // getPuzzle('2').then((data) => {
