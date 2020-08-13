@@ -23,13 +23,20 @@ window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
     game.makeGuess(guess)
     game.getStatus(game)
-    statusEl.textContent = game.status
+    //statusEl.textContent = game.status
     render()
 })
 
 const render = () => {
-    puzzleEl.textContent = game.puzzle
+    puzzleEl.innerHTML = ''
+    // puzzleEl.textContent = game.puzzle
     guessesEl.textContent = game.message
+
+    game.puzzle.split('').forEach((char) => {
+        const charEl = document.createElement('span')
+        charEl.textContent = char
+        puzzleEl.appendChild(charEl)
+    })
 }
 
 const startGame = async () => {
