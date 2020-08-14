@@ -6,14 +6,11 @@
 
 // npm run build
 
-const name = 'Jen'
-console.log(name)
+//import './utilities.js'
 
-class Hangman {
-    myMethod() {
-        return 'Testing'
-    }
-}
+import { add, name } from './utilities'
+import { scream } from './scream'
 
-const hangman = new Hangman()
-console.log(hangman.myMethod())
+console.log('name')
+console.log(add(32, 1))
+console.log(scream(name))
