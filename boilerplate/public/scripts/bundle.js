@@ -12,7 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 // npm run build
 
-var name = 'Carla';
+var name = 'Jen';
 console.log(name);
 
 var Hangman = function () {

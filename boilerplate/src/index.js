@@ -6,7 +6,7 @@
 
 // npm run build
 
-const name = 'Carla'
+const name = 'Jen'
 console.log(name)
 
 class Hangman {
