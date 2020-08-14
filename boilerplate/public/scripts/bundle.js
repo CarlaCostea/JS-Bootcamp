@@ -6,7 +6,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 // in terminat: babel input.js -o output.js then from boilerplate folder: npm init
 // local install npm install babel-preset-env
-var name = 'Jen';
+
+// babel input.js --out-file output.js --presets env
+// babel src/index.js --out-file public/scripts/bundle.js --presets env
+
+// npm run build
+
+var name = 'Carla';
 console.log(name);
 
 var Hangman = function () {
@@ -23,3 +29,6 @@ var Hangman = function () {
 
     return Hangman;
 }();
+
+var hangman = new Hangman();
+console.log(hangman.myMethod());
