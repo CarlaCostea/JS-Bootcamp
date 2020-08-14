@@ -1,5 +1,10 @@
-console.log('utilites.js')
+// Named export - as many as we need
+// Default exprot - one
 
-export const add = (a, b) => a + b
+const add = (a, b) => a + b
+const name = 'Carla'
 
-export const name = 'Carla'
+const square = (x) => x * x
+//export default square
+
+export { add, name, square as default }
