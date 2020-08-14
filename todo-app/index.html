@@ -2,24 +2,39 @@
 
 <html>
     <head>
-
+        <title>Todo App</title>
+        <link href="/styles/style.css" rel="stylesheet">
+        <link href="/images/favicon.png" rel="icon">
     </head>
 
     <body>
-        <h1>DAILY TO DO LIST</h1>
-        <input id="search-text" type="text" placeholder="Search ToDo">
-        <div id="todos"></div>
-        <form id="new-todo">
-            <input type="text" placeholder="New ToDo" name="text">
-            <button>Add ToDo</button>
-        </form>
+        <div class="header">
+            <div class="container">
+                <h1 class="header__title">DAILY TO DO LIST</h1>
+                <h2 class="header_subtitle">What do you need to do?</h2>
+            </div>
+        </div>
 
-        <label>
-            <input id="check-todos" type="checkbox"> Hide completed 
-        </label>
-        <h5>by Carla Costea</h5>
-        <script src = "uuidv4.js"></script>
-        <script src = "todos-functions.js"></script>
-        <script src = "todos-app.js"></script>
+        <div class="actions">
+            <div class="actions__container">
+                <input id="search-text" class="input" type="text" placeholder="Search ToDo">
+                <label class="checkbox">
+                    <input id="check-todos" type="checkbox"> Hide completed 
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="todos"></div>
+            <form id="new-todo">
+                <input type="text" class="input" placeholder="New ToDo" name="text">
+                <button class="button">Add ToDo</button>
+            </form>
+        </div>
+
+        <p class="signature">by Carla Costea</p>
+        <script src = "/scripts/uuidv4.js"></script>
+        <script src = "/scripts/todos-functions.js"></script>
+        <script src = "/scripts/todos-app.js"></script>
     </body>
 </html>

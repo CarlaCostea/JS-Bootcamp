@@ -25,7 +25,8 @@ const saveTodos = (todos) => {
 
 // Get the DOM elements for an individual todo
 const generateToDoDOM = (todo) => {
-    const todoEl = document.createElement('div')
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('div')
     const todoCheckBox = document.createElement('input')
     const todoText = document.createElement('span')
     const todoRemoveButton = document.createElement('button')
@@ -33,7 +34,8 @@ const generateToDoDOM = (todo) => {
     // Setup todo checkbox
     todoCheckBox.setAttribute('type', 'checkbox')
     todoCheckBox.checked = todo.completed
-    todoEl.appendChild(todoCheckBox)
+    // we want to put the checkbox and the todoEl in din container 
+    containerEl.appendChild(todoCheckBox)
     todoCheckBox.addEventListener('change', () => {
         checkToDo(todo.id)
         saveTodos(todos)
@@ -43,16 +45,23 @@ const generateToDoDOM = (todo) => {
 
     // Setup todo text
     todoText.textContent = todo.title
-    todoEl.appendChild(todoText)
+    containerEl.appendChild(todoText)
+
+    // Setup container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
 
     // Setup the remove button
-    todoRemoveButton.textContent = 'x'
+    todoRemoveButton.textContent = 'Remove'
+    todoRemoveButton.classList.add('button', 'button--text')
     todoEl.appendChild(todoRemoveButton)
     todoRemoveButton.addEventListener('click', () => {
         removeToDo(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
     })
+
     return todoEl
 }
 
@@ -80,13 +89,23 @@ const removeToDo = (id) => {
 // Get the DOM elements for remaining todos
 const generateRemainingDOM = (incompleteTodos) => {
     const remainingTodo = document.createElement('h2')
-    remainingTodo.textContent = `You have ${incompleteTodos.length} todos left`
+    remainingTodo.classList.add('list-title')
+    const plural = incompleteTodos.length === 1 ? '' : 's'
+    remainingTodo.textContent = `You have ${incompleteTodos.length} todo${plural} left`
+    // if (incompleteTodos.length !== 1)
+    // {
+    //     remainingTodo.textContent = `You have ${incompleteTodos.length} todos left`
+    // } else {
+    //     remainingTodo.textContent = `You have ${incompleteTodos.length} todo left`
+    // }
+
     return remainingTodo
 }
 
 // Render application todos based on filters
 const renderTodos = (todos, filters) => {
-    let filteredTodos = todos.filter((todo) => {
+    const todoEl = document.querySelector('#todos')
+    const filteredTodos = todos.filter((todo) => {
         const textMatch = todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideMatch = !filters.hideCompleted || !todo.completed
         // debugger
@@ -104,12 +123,20 @@ const renderTodos = (todos, filters) => {
 
     const incompleteTodos = filteredTodos.filter((todo) => !todo.completed)
 
-    document.querySelector('#todos').innerHTML = ''
+    todoEl.innerHTML = ''
 
-    document.querySelector('#todos').appendChild(generateRemainingDOM(incompleteTodos))
+    todoEl.appendChild(generateRemainingDOM(incompleteTodos))
+
+    if (filteredTodos.length === 0) {
+        const messageEl = document.createElement('p')
+        messageEl.classList.add('empty-message')
+        messageEl.textContent = 'Chill out, no todos left'
+        todoEl.appendChild(messageEl)
+        return
+    }
 
     filteredTodos.forEach((todo) => {
         const p = generateToDoDOM(todo)
-        document.querySelector('#todos').appendChild(p)
+        todoEl.appendChild(p)
     })
 }

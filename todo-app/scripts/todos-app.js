@@ -16,9 +16,14 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
+    const input = e.target.elements.text.value.trim()
+    if (input ==='' || e.target.elements.text.value === null){
+        return
+    }
+
     todos.push({
         id: uuidv4(),
-        title: e.target.elements.text.value,
+        title: input,
         completed: false
     })
     saveTodos(todos)
