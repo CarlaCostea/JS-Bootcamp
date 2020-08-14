@@ -1,6 +1,6 @@
 // async/await
 const getPuzzle = async (wordCount) => {
-    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`)
     if (response.status !== 200) {
         throw new Error('An error occurred')
     }
@@ -10,7 +10,7 @@ const getPuzzle = async (wordCount) => {
 
 // convert to fetch
 const getPuzzleOld = (wordCount) => {
-    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
+    return fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
         }
@@ -24,7 +24,7 @@ const getPuzzleOld = (wordCount) => {
 
 // Convert to fetch challenge
 const getCountryOld = (countryCode) => {
-    return fetch('https://restcountries.eu/rest/v2/all').then((response) => {
+    return fetch('//restcountries.eu/rest/v2/all').then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
         }
@@ -36,7 +36,7 @@ const getCountryOld = (countryCode) => {
 
 // Get location challenge
 const getLocationOld = (token) => {
-    return fetch(`http://ipinfo.io/json?token=${token}`).then((response) => {
+    return fetch(`//ipinfo.io/json?token=${token}`).then((response) => {
         if (response.status !== 200) {
             throw new Error('An error occurred')
         }
@@ -57,7 +57,7 @@ const getCountry = async (countryCode) => {
 
 // async await challenge
 const getLocation = async (token) => {
-    const response = await fetch(`http://ipinfo.io/json?token=${token}`)
+    const response = await fetch(`//ipinfo.io/json?token=${token}`)
         if (response.status !== 200) {
             throw new Error('An error occurred')
         }
