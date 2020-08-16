@@ -13,6 +13,7 @@ module.exports = {
         rules: [{
             // target just js files
             test: /\.js$/,
+            enforce: 'pre',
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
@@ -25,7 +26,8 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
         publicPath: '/scripts/'
-    }
+    },
+    devtool: 'source-map'
 }
 
 // node js global variable : __dirname
