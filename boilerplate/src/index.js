@@ -13,5 +13,5 @@ import scream from './scream'
 
 console.log('name')
 console.log(add(32, 1))
-console.log(scream(name))
+console.log(scream("hello"))
 console.log(otherSquare(2))
