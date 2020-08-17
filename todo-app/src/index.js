@@ -1,37 +1,52 @@
-import uuidv4 from 'uuid/v4'
+// Set up index.html to load the bundle
+// Make sure to load uuid via an npm module when necessary
 
-const todos = getSavedTodos()
+// Add necessary imports
 
-const filters = {
-    searchText: '',
-    hideCompleted: false
-}
+// Render initial todos
 
-renderTodos(todos, filters)
+// Set up search text handler
+
+// Set up checkbox handler
+
+// Set up form submission handler
+
+import { setFilters } from './filters'
+import { createTodo, loadTodos } from './todos'
+import { renderTodos } from './views'
+
+renderTodos()
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
-    filters.searchText = e.target.value
-    renderTodos(todos, filters)
+    setFilters({
+        searchText: e.target.value
+    })
+    renderTodos()
 })
 
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
     const input = e.target.elements.text.value.trim()
-    if (input ==='' || e.target.elements.text.value === null){
+    if (input === '' || e.target.elements.text.value === null) {
         return
     }
 
-    todos.push({
-        id: uuidv4(),
-        title: input,
-        completed: false
-    })
-    saveTodos(todos)
-    renderTodos(todos, filters)
-    e.target.elements.text.value =''
+    createTodo(input)
+    renderTodos()
+    e.target.elements.text.value = ''
 })
 
 document.querySelector("#check-todos").addEventListener('change', (e) => {
-    filters.hideCompleted = e.target.checked
-    renderTodos(todos, filters)
+    setFilters({
+        hideCompleted: e.target.checked
+    })
+    renderTodos()
+})
+
+// Add a watcher for local storage
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        loadTodos()
+        renderTodos()
+    }
 })
