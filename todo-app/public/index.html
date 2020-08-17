@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Todo App</title>
+        <link href="/styles/style.css" rel="stylesheet">
+        <link href="/images/favicon.png" rel="icon">
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="container">
+                <h1 class="header__title">DAILY TO DO LIST</h1>
+                <h2 class="header_subtitle">What do you need to do?</h2>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="actions__container">
+                <input id="search-text" class="input" type="text" placeholder="Search ToDo">
+                <label class="checkbox">
+                    <input id="check-todos" type="checkbox"> Hide completed 
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="todos"></div>
+            <form id="new-todo">
+                <input type="text" class="input" placeholder="New ToDo" name="text">
+                <button class="button">Add ToDo</button>
+            </form>
+        </div>
+
+        <p class="signature">by Carla Costea</p>
+        <script src = "/scripts/bundle.js"></script>
+    </body>
+</html>
