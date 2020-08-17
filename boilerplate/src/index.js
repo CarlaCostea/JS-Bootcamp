@@ -1,18 +1,22 @@
-// in terminat: babel input.js -o output.js then from boilerplate folder: npm init
-// local install npm install babel-preset-env
+// const calculateAverage = (numOne, numTwo) => {
+//     return (numOne + numTwo) / 2
+// }
 
-// babel input.js --out-file output.js --presets env
-// babel src/index.js --out-file public/scripts/bundle.js --presets env
+// console.log(calculateAverage(0,100))
 
-// npm run build
+const calculateAverage = (thing, ...numbers) => {
+    let sum = 0
+    numbers.forEach((num) => sum += num)
+    const average = sum / numbers.length
+    return `The average ${thing} is ${average}`
+}
 
-//import './utilities.js'
+console.log(calculateAverage('grade', 0, 100, 56, 80))
 
-import otherSquare from './utilities'
-import { add, name } from './utilities'
-import scream from './scream'
+const printTeam = (teamName, coach, ...players) => {
+    console.log(`Team: ${teamName}`)
+    console.log(`Coach: ${coach}`)
+    console.log(`Players: ${players.join(', ')}`)
+}
 
-console.log('name')
-console.log(add(32, 1))
-console.log(scream(name))
-console.log(otherSquare(2))
+printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
