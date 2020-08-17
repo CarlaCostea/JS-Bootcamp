@@ -3,16 +3,18 @@ import moment from 'moment'
 
 let notes = []
 
+// Read existing notes from localStorage
 const loadNotes = () => {
     const notesJSON = localStorage.getItem('notes')
 
     try {
-        return notesJSON ? JSON.parse(notesJSON): []
+        return notesJSON ? JSON.parse(notesJSON) : []
     } catch (e) {
         return []
-    }
+    } 
 }
 
+// Save the notes to localStorage
 const saveNotes = () => {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
@@ -29,34 +31,36 @@ const createNote = () => {
         title: '',
         body: '',
         createdAt: timestamp,
-        updateAt: timestamp
+        updatedAt: timestamp
     })
-
     saveNotes()
+
+    return id
 }
 
+// Remove a note from the list
 const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) => note.id === id)
 
-    if (noteIndex !== -1) {
+    if (noteIndex > -1) {
         notes.splice(noteIndex, 1)
         saveNotes()
-    } 
+    }
 }
 
 // Sort your notes by one of three ways
 const sortNotes = (sortBy) => {
     if (sortBy === 'byEdited') {
         return notes.sort((a, b) => {
-            if (a.updateAt > b.updateAt) {
+            if (a.updatedAt > b.updatedAt) {
                 return -1
-            } else if (a.updateAt < b.updateAt) {
+            } else if (a.updatedAt < b.updatedAt) {
                 return 1
             } else {
                 return 0
             }
         })
-    } else  if (sortBy === 'byCreated') {
+    } else if (sortBy === 'byCreated') {
         return notes.sort((a, b) => {
             if (a.createdAt > b.createdAt) {
                 return -1
@@ -90,17 +94,18 @@ const updateNote = (id, updates) => {
 
     if (typeof updates.title === 'string') {
         note.title = updates.title
-        note.updateAt = moment().valueOf()
+        note.updatedAt = moment().valueOf()
     }
 
     if (typeof updates.body === 'string') {
         note.body = updates.body
-        note.updateAt = moment().valueOf()
+        note.updatedAt = moment().valueOf()
     }
 
     saveNotes()
+    return note
 }
 
 notes = loadNotes()
 
-export {getNotes, createNote, removeNote, sortNotes, updateNote}
+export { getNotes, createNote, removeNote, sortNotes, updateNote }
