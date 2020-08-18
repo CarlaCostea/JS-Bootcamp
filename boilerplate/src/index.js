@@ -19,4 +19,52 @@ const printTeam = (teamName, coach, ...players) => {
     console.log(`Players: ${players.join(', ')}`)
 }
 
-printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
+const team = {
+    name: 'Libery',
+    coach: 'Casey Penn',
+    players: ['Marge', 'Aiden', 'Herbert', 'Sherry']
+}
+printTeam(team.name, team.coach, ...team.players)
+// printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
+
+let cities = ['Barcelona', 'Cape Town', 'Bordeaux']
+let citiesCopy = [...cities, 'Santiago']
+// citiesCopy.push('Santiago')
+console.log(citiesCopy)
+
+// to use spread operator with objects we need to install babel-plugin-transform-object-rest-spread@6.26.0
+let house = {
+    bedrooms: 2,
+    bathrooms: 1,
+    yearBuilt: 1999
+}
+
+// these are 2 independent projects
+let newHouse = {
+    besement: true,
+    ...house,
+    bedrooms: 3
+}
+
+console.log(house)
+console.log(newHouse)
+
+// Challenge
+
+let person = {
+    name: 'Carla',
+    age: 30
+}
+
+let location = {
+    city: 'Cluj-Napoca',
+    country: 'Romania'
+}
+
+let aboutMe = {
+    ...person,
+    ...location,
+    kids: 1
+}
+
+console.log(aboutMe)
