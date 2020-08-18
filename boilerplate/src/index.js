@@ -68,3 +68,45 @@ let aboutMe = {
 }
 
 console.log(aboutMe)
+
+const todo = {
+    id: 'number1',
+    text: 'sleep more',
+    completed: false
+}
+
+// const text = todo.text
+// const completed = todo.completed
+
+// Object Destructuring
+
+// const { text, completed } = todo
+
+// Change name of const:
+const { text:todoText, completed, details = 'no details', ...others } = todo
+
+console.log(todoText, completed)
+console.log(details)
+console.log(others)
+
+// Array Destructuring
+
+const age = [65, 13, 81, 30, 6, 2 ]
+const [firstAge, secondAge, , fourthAge, ...otherAges] = age
+
+console.log(firstAge)
+console.log(fourthAge)
+
+// Put the rest of the ages in an array
+console.log(otherAges)
+
+// const printTodo = (todo) => {
+//     console.log(`${todo.text}: ${todo.completed}`)
+// }
+
+const printTodo = ({ text, completed}) => {
+    console.log(`${text}: ${completed}`)
+}
+
+
+printTodo(todo)

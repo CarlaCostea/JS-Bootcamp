@@ -6,10 +6,10 @@ import { getFilters } from './filters'
 // Return value: none
 const renderTodos = () => {
     const todoEl = document.querySelector('#todos')
-    const filters = getFilters()
+    const { searchText, hideCompleted } = getFilters()
     const filteredTodos = getTodos().filter((todo) => {
-        const textMatch = todo.title.toLowerCase().includes(filters.searchText.toLowerCase())
-        const hideMatch = !filters.hideCompleted || !todo.completed
+        const textMatch = todo.title.toLowerCase().includes(searchText.toLowerCase())
+        const hideMatch = !hideCompleted || !todo.completed
         // debugger
         return textMatch && hideMatch
     })
@@ -90,4 +90,4 @@ const generateRemainingDOM = (incompleteTodos) => {
     return remainingTodo
 }
 
-export { generateToDoDOM, renderTodos, generateRemainingDOM}
+export { generateToDoDOM, renderTodos, generateRemainingDOM }
